@@ -52,7 +52,7 @@ export default function Layout({ children, currentPageName }) {
         <nav className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to={createPageUrl('Home')}>
+            <Link to={createPageUrl('Home')} className="flex items-center py-2">
               <Logo isScrolled={false} />
             </Link>
 

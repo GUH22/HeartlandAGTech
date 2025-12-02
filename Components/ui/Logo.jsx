@@ -8,74 +8,12 @@ export default function Logo({ className = '', isScrolled = false, isFooter = fa
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       {/* Logo Icon */}
-      <div className="relative w-10 h-10 flex items-center justify-center flex-shrink-0">
-        <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
-        >
-          {/* Outer dark olive green circle with nodes */}
-          <path
-            d="M 20 8 A 12 12 0 0 1 28 12"
-            stroke="#556B2F"
-            strokeWidth="2.5"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 20 8 A 12 12 0 0 0 12 12"
-            stroke="#556B2F"
-            strokeWidth="2.5"
-            fill="none"
-            strokeLinecap="round"
-          />
-          {/* Nodes at ends */}
-          <circle cx="28" cy="12" r="2" fill="#556B2F" />
-          <circle cx="12" cy="12" r="2" fill="#556B2F" />
-          
-          {/* Inner lime green arcs */}
-          <path
-            d="M 20 10 A 10 10 0 0 1 26 13"
-            stroke="#9ACD32"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 20 10 A 10 10 0 0 0 14 13"
-            stroke="#9ACD32"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          
-          {/* Center leaf */}
-          <path
-            d="M 20 15 L 18 20 L 20 25 L 22 20 Z"
-            fill="#9ACD32"
-          />
-          <path
-            d="M 20 15 L 20 25"
-            stroke="#7CB342"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 19 18 L 20 20 L 21 18"
-            stroke="#7CB342"
-            strokeWidth="1"
-            fill="none"
-          />
-          <path
-            d="M 19 22 L 20 20 L 21 22"
-            stroke="#7CB342"
-            strokeWidth="1"
-            fill="none"
-          />
-        </svg>
+      <div className="relative flex items-center justify-center flex-shrink-0 overflow-visible">
+        <img 
+          src="/Images/Heartland Circle New.png"
+          alt="Heartland AG Tech Logo"
+          className="h-10 w-auto object-contain"
+        />
       </div>
       
       {/* Text */}

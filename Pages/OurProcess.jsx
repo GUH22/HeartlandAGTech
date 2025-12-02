@@ -2,55 +2,54 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '../Components/ui/IntersectionObserver';
 import { Search, Settings, TrendingUp, Headphones } from 'lucide-react';
-import ProcessPreviewSection from '../Components/home/ProcessPreviewSection';
 
 const processSteps = [
   {
     number: '01',
     icon: Search,
-    title: 'Assessment',
-    description: 'We begin by understanding your current operations, challenges, and goals. Our team conducts a thorough assessment to identify opportunities for improvement and optimization.',
+    title: 'Assessment – Grounded in Lean & Six Sigma',
+    description: 'We start by treating your farm or facility like a system. Using Lean and Six Sigma methods, we map how work actually happens today, where time is being wasted, and where breakdowns or inconsistencies cost you money. The goal is simple: only pursue technology that clearly pays its way in your operation.',
     details: [
-      'On-site evaluation',
-      'Data collection and analysis',
-      'Goal setting and planning',
-      'Custom solution design'
+      'On-site walkthroughs with your team and equipment',
+      'Data collection on downtime, variability, and pinch points',
+      'Clear targets for consistency, uptime, and time savings',
+      'Custom solution design focused on measurable ROI'
     ]
   },
   {
     number: '02',
     icon: Settings,
-    title: 'Implementation',
-    description: 'Our experienced team works closely with you to seamlessly integrate our technology into your existing workflow. We ensure minimal disruption while maximizing value.',
+    title: 'Implementation – Built Around Your Operation',
+    description: 'Our team works side-by-side with you to plug new tools into the way you already farm, not the other way around. Using Lean thinking, we keep the rollout simple, standard, and repeatable so your people can run it confidently day-to-day.',
     details: [
-      'System installation',
-      'Data migration',
-      'Staff training',
-      'Workflow integration'
+      'System and sensor installation with minimal disruption',
+      'Clean data setup and migration from existing systems',
+      'Practical, hands-on staff training in plain language',
+      'Workflow integration that keeps jobs consistent and efficient'
     ]
   },
   {
     number: '03',
     icon: TrendingUp,
-    title: 'Optimization',
-    description: 'We continuously monitor your operations and make data-driven adjustments to ensure you\'re getting maximum value from our solutions. Regular reviews help identify new opportunities.',
+    title: 'Optimization – Continuous Improvement, Not One-and-Done',
+    description: 'Once the technology is in place, we don\'t just walk away. Using Six Sigma discipline, we monitor performance, look for variation, and make targeted adjustments that keep things running smoothly and predictably season after season.',
     details: [
-      'Performance monitoring',
-      'Data analysis',
-      'System tuning',
-      'Continuous improvement'
+      'Ongoing performance monitoring for uptime and consistency',
+      'Data analysis to spot early warning signs and failure patterns',
+      'System tuning to reduce unscheduled maintenance and surprises',
+      'Continuous improvement cycles to lock in better, repeatable results'
     ]
   },
   {
     number: '04',
     icon: Headphones,
-    title: 'Support',
-    description: 'Our commitment doesn\'t end after implementation. We provide ongoing support, training, and updates to help you make the most of your investment and stay ahead of the curve.',
+    title: 'Support – Long-Term Partnership, Lean Mindset',
+    description: 'Our commitment is long-term. We support your team with the same Lean and Six Sigma approach we use internally: clear standards, fast problem-solving, and a focus on making your time more valuable, not more complicated.',
     details: [
-      '24/7 technical support',
-      'Regular updates',
-      'Advanced training',
-      'Strategic consulting'
+      '24/7 technical support when something isn\'t behaving',
+      'Regular software and firmware updates to stay ahead of issues',
+      'Advanced training to help your team use data, not just collect it',
+      'Strategic reviews to align tech decisions with your farm\'s goals'
     ]
   }
 ];
@@ -173,9 +172,6 @@ export default function OurProcess() {
           </div>
         </div>
       </section>
-
-      {/* Process Preview Section */}
-      <ProcessPreviewSection />
 
       {/* CTA Section */}
       <section className="py-24 bg-[#7CB342] text-white">

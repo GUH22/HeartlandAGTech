@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Layout from '../Layout.jsx'
 import Home from '../Pages/Home.jsx'
@@ -16,6 +16,11 @@ function App() {
   console.log('App.jsx: Component rendering...');
   const location = useLocation()
   console.log('App.jsx: Location:', location.pathname);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   
   const getPageName = (pathname) => {
     if (pathname === '/') return 'Home'

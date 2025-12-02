@@ -10,8 +10,8 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-gray-300">
         <img 
-          src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=80"
-          alt="Farm Landscape"
+          src="/Images/Potato Field.jpg"
+          alt="Potato Field"
           className="w-full h-full object-cover"
           onError={(e) => {
             e.target.style.display = 'none';

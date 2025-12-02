@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import HistoryTimeline from '../Components/about/HistoryTimeline';
 import FamilySection from '../Components/home/FamilySection';
 import WhoWeAreSection from '../Components/home/WhoWeAreSection';
+import OurTeamSection from '../Components/about/OurTeamSection';
 
 export default function About() {
   return (
@@ -11,11 +12,11 @@ export default function About() {
       <section className="relative min-h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80"
-            alt="About Us"
+            src="/Images/Potato Flowers.jpg"
+            alt="Potato Flowers"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#7CB342]/70" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         
         <div className="relative text-center px-6 py-20">
@@ -28,7 +29,7 @@ export default function About() {
               Our Story
             </span>
             <h1 className="text-5xl md:text-7xl font-light text-white mb-6">
-              About Heartland
+              About Heartland AG Tech
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Farmer-founded, field-tested, patent-backed technology
@@ -42,6 +43,9 @@ export default function About() {
 
       {/* Family Legacy Section */}
       <FamilySection />
+
+      {/* Our Team Section */}
+      <OurTeamSection />
 
       {/* History Timeline */}
       <section className="py-24 bg-gray-50">
