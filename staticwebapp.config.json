@@ -1,14 +1,17 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/Images/*.{png,jpg,gif,ico,svg,jpeg,avif}", "/*.{css,scss,js,png,jpg,gif,ico,svg,woff,woff2,ttf,eot}"]
+    "exclude": [
+      "/Images/*",
+      "/images/*",
+      "/*.{css,js,png,jpg,gif,ico,svg,jpeg,avif,woff,woff2,ttf,eot,json,map}"
+    ]
   },
-  "routes": [
-    {
-      "route": "/*",
-      "serve": "/index.html",
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html",
       "statusCode": 200
     }
-  ]
+  }
 }
 
