@@ -10,7 +10,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-gray-300">
         <img 
-          src="/Images/Potato Field.jpg"
+          src="/Images/Potato%20Field.jpg"
           alt="Potato Field"
           className="w-full h-full object-cover"
           onError={(e) => {

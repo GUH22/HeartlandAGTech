@@ -12,7 +12,7 @@ export default function About() {
       <section className="relative min-h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <img 
-            src="/Images/Potato Flowers.jpg"
+            src="/Images/Potato%20Flowers.jpg"
             alt="Potato Flowers"
             className="w-full h-full object-cover"
           />

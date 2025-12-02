@@ -7,7 +7,7 @@ const teamMembers = [
   {
     name: 'Russell Sanders',
     title: 'CTO, Heartland Ag Tech - Operational Excellence, Top Tier Ingredients',
-    image: '/Images/Russ Photo.jpg',
+    image: '/Images/Russ%20Photo.jpg',
     background: 'Russ started in industry as a semiconductor Engineer at Honeywell in Plymouth, MN before moving to Thermo King in Bloomington, MN where he was the 13th Master Innovator in the company\'s history. He is credited for over 50 patents and counting. His passion for continuous improvement is supported by his deep understanding of the Lean Six Sigma toolbox. Russ co-founded Heartland Ag Tech in 2019.',
     education: 'B.S. Electrical Engineering – Minnesota State University, Mankato',
     personalLife: 'Wife Nicole of 22 years, one daughter and three sons. Daughter is currently studying to be a Physician\'s Assistant, oldest son just graduated as a computer engineer, Middle son is in trade school studying to be an electrician, and the youngest is a Junior in high school. He has been a volunteer wrestling coach for Minnetonka Highschool since 2012. In his free time he enjoys travelling with his family to remote areas where we can get lost, connect, and hopefully find many fish.',
@@ -16,7 +16,7 @@ const teamMembers = [
   {
     name: 'Alicia Pavelski',
     title: 'Project Manager, Heartland Farms – VP, Top Tier Ingredients, LLC – CEO, Heartland Ag Tech, Inc.',
-    image: '/Images/Alicia Photo.jpg',
+    image: '/Images/Alicia%20Photo.jpg',
     background: 'Alicia started her career in Milwaukee as an Electrical Engineer specializing in power distribution, low voltage systems, generator systems, photovoltaics and lighting design for mainly healthcare and prisons across the country. Once getting engaged to Jeremie, she moved to Central Wisconsin and started working at Heartland Farms. She fell in love with the farm from the first day and has held many positions within the organization. She also volunteers her time with the Farming for the Future Foundation/Food + Farm Exploration Center, her daughter\'s school PTO and National Potato Council.',
     education: 'BS Architectural Electrical Engineering – Milwaukee School of Engineering',
     personalLife: 'Alicia enjoys spending time with her husband, Jeremie, and their daughter, Charlotte, cooking, photography, reading, travelling, gardening and being outdoors.',
@@ -25,7 +25,7 @@ const teamMembers = [
   {
     name: 'Jeremie Pavelski',
     title: 'President, Heartland Farms, Inc – Top Tier Ingredients, LLC – Heartland Ag Tech, Inc.',
-    image: '/Images/Jeremie Photo.jpg',
+    image: '/Images/Jeremie%20Photo.jpg',
     background: 'Jeremie is a 5th generation potato and vegetable farmer and entrepreneur. In the early years, Jeremie had a knack for technology and wasn\'t sure if he would remain on the family farm or pursue a career in technology development. After recognizing that Agriculture and Technology were on a head-on collision course, Jeremie chose to have the best of both worlds. Working through the ranks of the farming operation, he eventually earned his way up to President of Heartland Farms in 2010 where he leads a dynamic team enhancing agricultural capabilities. He brings a broad spectrum of knowledge and energy to the organization. Jeremie\'s passion is building teams, continuous improvement, lean principles, inventing new technologies, and pushing the boundaries of what can be done.',
     education: 'Northcentral Technical College – Management Information Systems, Milwaukee School of Engineering – Business Management, Purdue – Lean Six Sigma Green Belt',
     personalLife: 'Jeremie married the love of his life, Alicia, in 2011 and they now have a 7-year-old daughter, Charlotte. He enjoys spending time outdoors with the family, boating, biking, and teaching the next generation about agriculture, sustainability, and technology development.',

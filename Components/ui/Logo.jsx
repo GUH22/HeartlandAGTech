@@ -10,7 +10,7 @@ export default function Logo({ className = '', isScrolled = false, isFooter = fa
       {/* Logo Icon */}
       <div className="relative flex items-center justify-center flex-shrink-0 overflow-visible">
         <img 
-          src="/Images/Heartland Circle New.png"
+          src="/Images/Heartland%20Circle%20New.png"
           alt="Heartland AG Tech Logo"
           className="h-10 w-auto object-contain"
         />
