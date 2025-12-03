@@ -49,24 +49,28 @@ export default function Layout({ children, currentPageName }) {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black shadow-md`}
       >
         <nav className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link to={createPageUrl('Home')} className="flex items-center py-2">
+          <div className="flex items-center justify-center h-20 relative">
+            {/* Logo - Absolute positioned on left */}
+            <Link to={createPageUrl('Home')} className="absolute left-6 md:left-12 flex items-center py-2">
               <Logo isScrolled={false} />
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
+            {/* Desktop Navigation - Centered with right offset */}
+            <div className="hidden md:flex items-center gap-8 ml-32">
               {navLinks.map((link) => (
                 <Link
                   key={link.page}
                   to={createPageUrl(link.page)}
                   className={`relative text-sm font-medium tracking-wide transition-colors ${
-                    currentPageName === link.page ? 'text-[#7CB342]' : 'text-white/80 hover:text-white'
+                    link.page === 'Contact' 
+                      ? 'text-white font-semibold bg-[#7CB342] px-4 py-2 rounded' 
+                      : currentPageName === link.page 
+                        ? 'text-[#7CB342]' 
+                        : 'text-white/80 hover:text-white'
                   }`}
                 >
                   {link.name}
-                  {currentPageName === link.page && (
+                  {currentPageName === link.page && link.page !== 'Contact' && (
                     <motion.div
                       layoutId="activeNav"
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#7CB342]"
@@ -76,19 +80,10 @@ export default function Layout({ children, currentPageName }) {
               ))}
             </div>
 
-            {/* Desktop CTA */}
-            <div className="hidden md:block">
-              <Link to={createPageUrl('Contact')}>
-                <Button className="bg-[#7CB342] hover:bg-[#689F38] text-white rounded-none px-6">
-                  Contact Us
-                </Button>
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Absolute positioned on right */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-white"
+              className="md:hidden absolute right-6 p-2 text-white"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -110,17 +105,16 @@ export default function Layout({ children, currentPageName }) {
                     key={link.page}
                     to={createPageUrl(link.page)}
                     className={`block text-lg font-medium ${
-                      currentPageName === link.page ? 'text-[#7CB342]' : 'text-gray-700'
+                      link.page === 'Contact'
+                        ? 'text-white font-semibold bg-[#7CB342] px-4 py-2 rounded text-center'
+                        : currentPageName === link.page 
+                          ? 'text-[#7CB342]' 
+                          : 'text-gray-700'
                     }`}
                   >
                     {link.name}
                   </Link>
                 ))}
-                <Link to={createPageUrl('Contact')}>
-                  <Button className="w-full bg-[#7CB342] hover:bg-[#689F38] text-white rounded-none mt-4">
-                    Contact Us
-                  </Button>
-                </Link>
               </div>
             </motion.div>
           )}

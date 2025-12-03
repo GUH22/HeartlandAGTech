@@ -217,7 +217,7 @@ export default function Products() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="bg-gray-50 p-8 rounded-lg hover:shadow-xl transition-shadow"
+                  className="bg-gray-50 p-8 rounded-lg hover:shadow-xl transition-shadow flex flex-col h-full"
                 >
                   <div className="w-16 h-16 bg-[#7CB342]/10 rounded-lg flex items-center justify-center mb-6">
                     <Icon className="w-8 h-8 text-[#7CB342]" />
@@ -228,7 +228,7 @@ export default function Products() {
                   <p className="text-gray-700 mb-6 leading-relaxed">
                     {product.description}
                   </p>
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-2 mb-6 flex-grow">
                     {product.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2 text-gray-700">
                         <span className="text-[#7CB342] mt-1">•</span>
@@ -238,7 +238,7 @@ export default function Products() {
                   </ul>
                   <button
                     onClick={() => openModal(product)}
-                    className="w-full bg-[#7CB342] hover:bg-[#689F38] text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                    className="w-full bg-[#7CB342] hover:bg-[#689F38] text-white font-semibold py-3 px-6 rounded-lg transition-colors mt-auto"
                   >
                     View
                   </button>
