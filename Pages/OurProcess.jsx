@@ -63,7 +63,7 @@ export default function OurProcess() {
       <section className="relative min-h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
+            src="/Images/OurProcess.jpg"
             alt="Our Process"
             className="w-full h-full object-cover"
           />
@@ -152,7 +152,7 @@ export default function OurProcess() {
                   <div className={isEven ? '' : 'md:order-1'}>
                     <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl bg-gray-200">
                       <img 
-                        src={[
+                        src={index === 1 ? '/Images/Implement.jpg' : index === 2 ? '/Images/Monitor.jpg' : [
                           'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
                           'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80',
                           'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
