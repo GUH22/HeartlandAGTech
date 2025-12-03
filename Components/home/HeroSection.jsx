@@ -1,24 +1,74 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '../../src/utils.js';
 import { ArrowRight } from 'lucide-react';
 
 export default function HeroSection() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    // Preload the image aggressively before rendering
+    const img = new Image();
+    const imageUrl = "/Images/Potato%20Field.jpg";
+    
+    // Start loading immediately
+    img.src = imageUrl;
+    
+    img.onload = () => {
+      // Image is loaded, set source and mark as loaded
+      setImageSrc(imageUrl);
+      // Use requestAnimationFrame for smoother transition
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setImageLoaded(true);
+        });
+      });
+    };
+    
+    img.onerror = () => {
+      // Fallback if image fails - still show something
+      setImageSrc(imageUrl);
+      setImageLoaded(true);
+    };
+    
+    // Also ensure preload link exists
+    if (!document.querySelector(`link[href="${imageUrl}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imageUrl;
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    }
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 bg-gray-300">
-        <img 
-          src="/Images/Potato%20Field.jpg"
-          alt="Potato Field"
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            e.target.style.display = 'none';
-          }}
-        />
-        <div className="absolute inset-0 bg-[#7CB342]/70" />
-      </div>
+      {/* Background Image Container - Always has a solid color to prevent white flash */}
+      <div 
+        ref={containerRef}
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundColor: '#5a7a2a',
+          backgroundImage: imageSrc ? `url(${imageSrc})` : 'none',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          transition: imageLoaded ? 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+          opacity: imageLoaded ? 1 : 0.5,
+          willChange: imageLoaded ? 'auto' : 'opacity',
+          backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)'
+        }}
+      />
+      
+      {/* Overlay - Always visible to prevent flashing and provide consistent green tint */}
+      <div 
+        className="absolute inset-0 bg-[#7CB342]/70 z-[1]"
+      />
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-center text-white">
@@ -37,7 +87,7 @@ export default function HeroSection() {
             <br />
             <span className="flex items-center justify-center gap-4">
               <div className="h-px bg-white flex-1 max-w-16"></div>
-              <span>AG TECH</span>
+              <span>Ag TECH</span>
               <div className="h-px bg-white flex-1 max-w-16"></div>
             </span>
           </h1>

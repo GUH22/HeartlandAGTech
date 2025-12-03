@@ -11,7 +11,7 @@ export default function Logo({ className = '', isScrolled = false, isFooter = fa
       <div className="relative flex items-center justify-center flex-shrink-0 overflow-visible">
         <img 
           src="/Images/Heartland%20Circle%20New.png"
-          alt="Heartland AG Tech Logo"
+          alt="Heartland Ag Tech Logo"
           className="h-10 w-auto object-contain"
         />
       </div>
@@ -24,7 +24,7 @@ export default function Logo({ className = '', isScrolled = false, isFooter = fa
         <div className="flex items-center gap-2">
           <div className={`h-px flex-1 ${lineColor}`}></div>
           <p className={`text-xs tracking-[0.2em] ${subTextColor}`}>
-            AG TECH
+            Ag TECH
           </p>
           <div className={`h-px flex-1 ${lineColor}`}></div>
         </div>

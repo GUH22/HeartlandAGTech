@@ -29,7 +29,7 @@ export default function About() {
               Our Story
             </span>
             <h1 className="text-5xl md:text-7xl font-light text-white mb-6">
-              About Heartland AG Tech
+              About Heartland Ag Tech
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Farmer-founded, field-tested, patent-backed technology
