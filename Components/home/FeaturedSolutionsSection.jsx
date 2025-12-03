@@ -7,18 +7,18 @@ import { ArrowRight } from 'lucide-react';
 
 const solutions = [
   {
-    title: 'Irrigation Intelligence Platform',
-    description: 'Smart irrigation management with patented sensors and diagnostics to optimize water usage and crop health.',
+    title: 'Machine Vision & Artificial Intelligence',
+    description: 'Advanced AI-powered vision systems for real-time quality assessment and automated equipment control.',
     image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80'
   },
   {
-    title: 'Storage Insight Sensor Network',
-    description: 'Comprehensive monitoring systems to maintain optimal storage conditions and protect potato quality.',
+    title: 'Patented Irrigation Intelligence Platform',
+    description: 'Comprehensive irrigation monitoring system with predictive maintenance capabilities.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'
   },
   {
-    title: 'Remote Monitoring & Control Tools',
-    description: 'Complete remote control and monitoring capabilities for fertigation systems and equipment management.',
+    title: 'Weather & Environmental Monitoring',
+    description: 'Farm-ready weather stations providing comprehensive environmental data for decision-making.',
     image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80'
   }
 ];
