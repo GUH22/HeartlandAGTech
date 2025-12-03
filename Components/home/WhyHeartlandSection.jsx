@@ -28,7 +28,7 @@ export default function WhyHeartlandSection() {
         >
           <div className="relative">
             <img 
-              src="/Images/Heartland Workers.jpg"
+              src="/Images/Heartland%20Workers.jpg"
               alt="Heartland Workers"
               className="w-full h-[500px] object-cover rounded-lg shadow-xl bg-gray-200"
               onError={(e) => {
