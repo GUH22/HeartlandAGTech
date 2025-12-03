@@ -87,7 +87,7 @@ export default function HeroSection() {
             <br />
             <span className="flex items-center justify-center gap-4">
               <div className="h-px bg-white flex-1 max-w-16"></div>
-              <span>Ag TECH</span>
+              <span>AG TECH</span>
               <div className="h-px bg-white flex-1 max-w-16"></div>
             </span>
           </h1>

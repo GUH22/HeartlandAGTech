@@ -24,7 +24,7 @@ export default function Logo({ className = '', isScrolled = false, isFooter = fa
         <div className="flex items-center gap-2">
           <div className={`h-px flex-1 ${lineColor}`}></div>
           <p className={`text-xs tracking-[0.2em] ${subTextColor}`}>
-            Ag TECH
+            AG TECH
           </p>
           <div className={`h-px flex-1 ${lineColor}`}></div>
         </div>
