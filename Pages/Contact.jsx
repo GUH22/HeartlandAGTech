@@ -89,7 +89,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 bg-white border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none"
                     />
                   </div>
                   <div>
@@ -103,7 +103,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 bg-white border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none"
                     />
                   </div>
                   <div>
@@ -116,7 +116,7 @@ export default function Contact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none"
+                      className="w-full px-4 py-3 bg-white border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none"
                     />
                   </div>
                   <div>
@@ -130,7 +130,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none resize-none"
+                      className="w-full px-4 py-3 bg-white border border-gray-300 focus:ring-2 focus:ring-[#7CB342] focus:border-transparent outline-none resize-none"
                     />
                   </div>
                   <button

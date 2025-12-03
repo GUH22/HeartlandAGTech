@@ -4,7 +4,6 @@ export function createPageUrl(pageName) {
     'About': '/about',
     'OurProcess': '/our-process',
     'Products': '/products',
-    'Community': '/community',
     'Gallery': '/gallery',
     'Employment': '/employment',
     'Contact': '/contact',

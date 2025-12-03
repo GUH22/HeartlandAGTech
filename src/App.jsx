@@ -7,7 +7,6 @@ import Products from '../Pages/Products.jsx'
 import Contact from '../Pages/Contact.jsx'
 import Employment from '../Pages/Employment.jsx'
 import OurProcess from '../Pages/OurProcess.jsx'
-import Community from '../Pages/Community.jsx'
 import Gallery from '../Pages/Gallery.jsx'
 
 console.log('App.jsx: Loading...');
@@ -27,7 +26,6 @@ function App() {
     if (pathname === '/about') return 'About'
     if (pathname === '/our-process') return 'OurProcess'
     if (pathname === '/products') return 'Products'
-    if (pathname === '/community') return 'Community'
     if (pathname === '/gallery') return 'Gallery'
     if (pathname === '/employment') return 'Employment'
     if (pathname === '/contact') return 'Contact'
@@ -45,7 +43,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/our-process" element={<OurProcess />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/community" element={<Community />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/employment" element={<Employment />} />
           <Route path="/contact" element={<Contact />} />

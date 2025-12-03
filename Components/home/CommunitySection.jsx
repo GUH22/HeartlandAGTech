@@ -1,8 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '../ui/IntersectionObserver';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '../../src/utils.js';
 import { Users, Heart, UserCheck } from 'lucide-react';
 
 const values = [
@@ -41,16 +39,10 @@ export default function CommunitySection() {
           <h2 className="text-4xl md:text-5xl font-light mb-6 text-gray-900">
             Community
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             We're more than a technology company—we're part of the agricultural community, 
             committed to supporting farmers and strengthening our industry.
           </p>
-          <Link
-            to={createPageUrl('Community')}
-            className="inline-block bg-[#7CB342] text-white hover:bg-[#689F38] px-8 py-4 text-lg font-semibold transition-colors"
-          >
-            Learn About Our Community Work
-          </Link>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">

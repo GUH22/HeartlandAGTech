@@ -13,7 +13,6 @@ const navLinks = [
   { name: 'About', page: 'About' },
   { name: 'Our Process', page: 'OurProcess' },
   { name: 'Products', page: 'Products' },
-  { name: 'Community', page: 'Community' },
   { name: 'Gallery', page: 'Gallery' },
   { name: 'Employment', page: 'Employment' },
   { name: 'Contact', page: 'Contact' },
