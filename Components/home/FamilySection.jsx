@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '../ui/IntersectionObserver';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -13,7 +13,19 @@ const images = [
 export default function FamilySection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState({});
   const directionRef = useRef(1);
+
+  // Preload all images
+  useEffect(() => {
+    images.forEach((img) => {
+      const imageLoader = new Image();
+      imageLoader.src = img.src;
+      imageLoader.onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [img.src]: true }));
+      };
+    });
+  }, []);
 
   const goToPrevious = () => {
     directionRef.current = -1;
@@ -81,17 +93,24 @@ export default function FamilySection() {
             </p>
           </div>
           <div className="relative">
-            <div className="relative w-full h-[500px] rounded-lg shadow-xl overflow-hidden">
+            <div className="relative w-full h-[500px] rounded-lg shadow-xl overflow-hidden bg-gray-200">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={`${currentIndex}-${directionRef.current}`}
                   src={images[currentIndex].src}
                   alt={images[currentIndex].alt}
                   initial={{ opacity: 0, x: directionRef.current > 0 ? 100 : -100 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  animate={{ opacity: imagesLoaded[images[currentIndex].src] ? 1 : 0.7, x: 0 }}
                   exit={{ opacity: 0, x: directionRef.current > 0 ? -100 : 100 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                   className="w-full h-full object-cover"
+                  style={{
+                    imageRendering: 'auto',
+                    backfaceVisibility: 'hidden',
+                    transform: 'translateZ(0)',
+                    willChange: 'transform, opacity'
+                  }}
+                  loading="eager"
                 />
               </AnimatePresence>
               

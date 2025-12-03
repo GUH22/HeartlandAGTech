@@ -38,6 +38,13 @@ export default function WhoWeAreSection() {
               src="/Images/Farmer%20with%20tablet.jpeg"
               alt="Farmer with tablet in farm field"
               className="w-full h-[500px] object-cover rounded-lg shadow-xl bg-gray-200"
+              loading="eager"
+              style={{
+                imageRendering: 'auto',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
+                willChange: 'auto'
+              }}
               onError={(e) => {
                 console.error('Failed to load image:', e.target.src);
                 e.target.style.display = 'none';

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '../ui/IntersectionObserver';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -36,7 +36,30 @@ const teamMembers = [
 export default function OurTeamSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState({});
+  const [nextImagePreloaded, setNextImagePreloaded] = useState(false);
   const directionRef = useRef(1);
+
+  // Preload all team member images
+  useEffect(() => {
+    teamMembers.forEach((member) => {
+      const imageLoader = new Image();
+      imageLoader.src = member.image;
+      imageLoader.onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [member.image]: true }));
+      };
+    });
+  }, []);
+
+  // Preload next image when current index changes
+  useEffect(() => {
+    const nextIndex = (currentIndex + 1) % teamMembers.length;
+    const nextImage = new Image();
+    nextImage.src = teamMembers[nextIndex].image;
+    nextImage.onload = () => {
+      setNextImagePreloaded(true);
+    };
+  }, [currentIndex]);
 
   const goToPrevious = () => {
     directionRef.current = -1;
@@ -131,17 +154,36 @@ export default function OurTeamSection() {
 
             {/* Image */}
             <div className={imageOnRight ? '' : 'md:col-start-1 md:row-start-1'}>
-              <div className="relative w-full h-[500px] rounded-lg shadow-xl overflow-hidden">
+              <div className="relative w-full h-[500px] rounded-lg shadow-xl overflow-hidden bg-gray-200">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={`${currentIndex}-image-${directionRef.current}`}
                     src={currentMember.image}
                     alt={currentMember.name}
-                    initial={{ opacity: 0, x: directionRef.current > 0 ? 100 : -100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: directionRef.current > 0 ? -100 : 100 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, x: directionRef.current > 0 ? 100 : -100, scale: 1.05 }}
+                    animate={{ 
+                      opacity: imagesLoaded[currentMember.image] ? 1 : 0.8, 
+                      x: 0,
+                      scale: 1
+                    }}
+                    exit={{ 
+                      opacity: 0, 
+                      x: directionRef.current > 0 ? -100 : 100,
+                      scale: 0.95
+                    }}
+                    transition={{ 
+                      duration: 0.6, 
+                      ease: [0.4, 0, 0.2, 1],
+                      opacity: { duration: 0.4 }
+                    }}
                     className="w-full h-full object-cover"
+                    style={{
+                      imageRendering: 'auto',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                      willChange: 'transform, opacity'
+                    }}
+                    loading="eager"
                   />
                 </AnimatePresence>
               </div>
