@@ -56,7 +56,7 @@ export default function Employment() {
       <section className="relative min-h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&q=80"
+            src="/Images/Employment.jpg"
             alt="Employment"
             className="w-full h-full object-cover"
           />
