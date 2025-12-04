@@ -103,7 +103,7 @@ export default function Gallery() {
       <section className="relative min-h-[50vh] flex items-center justify-center pt-20">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=80"
+            src="/Images/Gallery.jpg"
             alt="Gallery"
             className="w-full h-full object-cover"
           />

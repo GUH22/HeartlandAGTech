@@ -162,7 +162,7 @@ export default function Products() {
       <section className="relative min-h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
+            src="/Images/Product.jpg"
             alt="Products"
             className="w-full h-full object-cover"
           />
