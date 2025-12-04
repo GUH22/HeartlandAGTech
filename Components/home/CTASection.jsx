@@ -46,11 +46,11 @@ export default function CTASection() {
               715-249-5555
             </a>
             <a 
-              href="mailto:info@heartlandagtech.com"
+              href="mailto:info@heartlandag.tech"
               className="inline-flex items-center justify-center gap-2 hover:text-white transition-colors"
             >
               <Mail className="w-5 h-5" />
-              info@heartlandagtech.com
+              info@heartlandag.tech
             </a>
           </div>
         </motion.div>

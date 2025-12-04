@@ -367,7 +367,7 @@ export default function Products() {
             Contact us to learn more about our products and how they can benefit your operation.
           </p>
           <a
-            href="mailto:info@heartlandagtech.com"
+            href="mailto:info@heartlandag.tech"
             className="inline-block bg-white text-[#7CB342] hover:bg-gray-100 px-10 py-4 text-lg font-semibold transition-colors"
           >
             Request a Demo

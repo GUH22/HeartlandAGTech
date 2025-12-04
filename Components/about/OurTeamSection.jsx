@@ -20,7 +20,7 @@ const teamMembers = [
     background: 'Alicia started her career in Milwaukee as an Electrical Engineer specializing in power distribution, low voltage systems, generator systems, photovoltaics and lighting design for mainly healthcare and prisons across the country. Once getting engaged to Jeremie, she moved to Central Wisconsin and started working at Heartland Farms. She fell in love with the farm from the first day and has held many positions within the organization. She also volunteers her time with the Farming for the Future Foundation/Food + Farm Exploration Center, her daughter\'s school PTO and National Potato Council.',
     education: 'BS Architectural Electrical Engineering – Milwaukee School of Engineering',
     personalLife: 'Alicia enjoys spending time with her husband, Jeremie, and their daughter, Charlotte, cooking, photography, reading, travelling, gardening and being outdoors.',
-    specialty: 'Alicia works directly with the FL sustainability, RegenAg, water use, and PR teams. She is also the public relations coordinator for Heartland Farms and "Farm wife" to keep us all in line.'
+    specialty: 'Alicia works directly with the Customer and PR teams. She is also the public relations coordinator for Heartland Farms and "Farm wife" to keep us all in line.'
   },
   {
     name: 'Jeremie Pavelski',
@@ -38,7 +38,9 @@ export default function OurTeamSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState({});
   const [nextImagePreloaded, setNextImagePreloaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const directionRef = useRef(1);
+  const autoRotateIntervalRef = useRef(null);
 
   // Preload all team member images
   useEffect(() => {
@@ -61,12 +63,56 @@ export default function OurTeamSection() {
     };
   }, [currentIndex]);
 
+  // Auto-rotate slideshow every 8 seconds (pauses on hover)
+  useEffect(() => {
+    // Clear any existing interval
+    if (autoRotateIntervalRef.current) {
+      clearInterval(autoRotateIntervalRef.current);
+    }
+
+    // Only start auto-rotation when section is in view and not hovered
+    if (inView && !isHovered) {
+      autoRotateIntervalRef.current = setInterval(() => {
+        directionRef.current = 1;
+        setCurrentIndex((prevIndex) => {
+          const newIndex = prevIndex === teamMembers.length - 1 ? 0 : prevIndex + 1;
+          return newIndex;
+        });
+      }, 8000); // 8 seconds
+    }
+
+    // Cleanup interval on unmount or when inView/isHovered changes
+    return () => {
+      if (autoRotateIntervalRef.current) {
+        clearInterval(autoRotateIntervalRef.current);
+      }
+    };
+  }, [inView, isHovered]);
+
+  const resetAutoRotate = () => {
+    // Clear existing interval
+    if (autoRotateIntervalRef.current) {
+      clearInterval(autoRotateIntervalRef.current);
+    }
+    // Restart interval after 8 seconds (only if not hovered)
+    if (inView && !isHovered) {
+      autoRotateIntervalRef.current = setInterval(() => {
+        directionRef.current = 1;
+        setCurrentIndex((prevIndex) => {
+          const newIndex = prevIndex === teamMembers.length - 1 ? 0 : prevIndex + 1;
+          return newIndex;
+        });
+      }, 8000);
+    }
+  };
+
   const goToPrevious = () => {
     directionRef.current = -1;
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex === 0 ? teamMembers.length - 1 : prevIndex - 1;
       return newIndex;
     });
+    resetAutoRotate();
   };
 
   const goToNext = () => {
@@ -75,6 +121,7 @@ export default function OurTeamSection() {
       const newIndex = prevIndex === teamMembers.length - 1 ? 0 : prevIndex + 1;
       return newIndex;
     });
+    resetAutoRotate();
   };
 
   const goToMember = (index) => {
@@ -82,6 +129,7 @@ export default function OurTeamSection() {
       directionRef.current = index > prevIndex ? 1 : -1;
       return index;
     });
+    resetAutoRotate();
   };
 
   const currentMember = teamMembers[currentIndex];
@@ -105,7 +153,11 @@ export default function OurTeamSection() {
           </h2>
         </motion.div>
 
-        <div className="relative">
+        <div 
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div className={`grid md:grid-cols-2 gap-12 items-center ${
             !imageOnRight ? 'md:grid-flow-dense' : ''
           }`}>
@@ -117,7 +169,7 @@ export default function OurTeamSection() {
                   initial={{ opacity: 0, x: directionRef.current > 0 ? 50 : -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: directionRef.current > 0 ? -50 : 50 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
                   className="bg-gray-50 p-8 rounded-lg shadow-lg"
                 >
                   <h3 className="text-3xl md:text-4xl font-light text-gray-900 mb-2">
@@ -172,9 +224,9 @@ export default function OurTeamSection() {
                       scale: 0.95
                     }}
                     transition={{ 
-                      duration: 0.6, 
+                      duration: 0.8, 
                       ease: [0.4, 0, 0.2, 1],
-                      opacity: { duration: 0.4 }
+                      opacity: { duration: 0.6 }
                     }}
                     className="w-full h-full object-cover"
                     style={{

@@ -178,8 +178,8 @@ export default function Layout({ children, currentPageName }) {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@heartlandagtech.com" className="hover:text-white transition-colors">
-                    info@heartlandagtech.com
+                  <a href="mailto:info@heartlandag.tech" className="hover:text-white transition-colors">
+                    info@heartlandag.tech
                   </a>
                 </li>
               </ul>

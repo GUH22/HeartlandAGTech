@@ -184,7 +184,7 @@ export default function OurProcess() {
             Let's discuss how our process can help transform your agricultural operations.
           </p>
           <a
-            href="mailto:info@heartlandagtech.com"
+            href="mailto:info@heartlandag.tech"
             className="inline-block bg-white text-[#7CB342] hover:bg-gray-100 px-10 py-4 text-lg font-semibold transition-colors"
           >
             Schedule a Consultation
