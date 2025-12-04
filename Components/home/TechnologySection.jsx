@@ -58,10 +58,11 @@ export default function TechnologySection() {
           </div>
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80"
-              alt="Technology"
+              src="/Images/CuttingEdge.png"
+              alt="Cutting-Edge Technology"
               className="w-full h-[500px] object-cover rounded-lg shadow-xl bg-gray-200"
               onError={(e) => {
+                console.error('Failed to load image:', e.target.src);
                 e.target.style.display = 'none';
                 e.target.nextSibling?.classList.remove('hidden');
               }}

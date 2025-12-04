@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import HistoryTimeline from '../Components/about/HistoryTimeline';
 import FamilySection from '../Components/home/FamilySection';
@@ -6,20 +6,70 @@ import WhoWeAreSection from '../Components/home/WhoWeAreSection';
 import OurTeamSection from '../Components/about/OurTeamSection';
 
 export default function About() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    // Preload the image aggressively before rendering
+    const img = new Image();
+    const imageUrl = "/Images/Potato%20Flowers.jpg";
+    
+    // Start loading immediately
+    img.src = imageUrl;
+    
+    img.onload = () => {
+      // Image is loaded, set source and mark as loaded
+      setImageSrc(imageUrl);
+      // Use requestAnimationFrame for smoother transition
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setImageLoaded(true);
+        });
+      });
+    };
+    
+    img.onerror = () => {
+      // Fallback if image fails - still show something
+      setImageSrc(imageUrl);
+      setImageLoaded(true);
+    };
+    
+    // Also ensure preload link exists
+    if (!document.querySelector(`link[href="${imageUrl}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imageUrl;
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    }
+  }, []);
+
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center">
-        <div className="absolute inset-0">
-          <img 
-            src="/Images/Potato%20Flowers.jpg"
-            alt="Potato Flowers"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image Container - Always has a solid color to prevent white flash */}
+        <div 
+          ref={containerRef}
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundColor: '#5a7a2a',
+            backgroundImage: imageSrc ? `url(${imageSrc})` : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            transition: imageLoaded ? 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+            opacity: imageLoaded ? 1 : 0.5,
+            willChange: imageLoaded ? 'auto' : 'opacity',
+            backfaceVisibility: 'hidden',
+            transform: 'translateZ(0)'
+          }}
+        />
+        <div className="absolute inset-0 bg-black/50 z-[1]" />
         
-        <div className="relative text-center px-6 py-20">
+        <div className="relative z-10 text-center px-6 py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
