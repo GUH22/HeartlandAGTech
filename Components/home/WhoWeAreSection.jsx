@@ -35,7 +35,7 @@ export default function WhoWeAreSection() {
           </div>
           <div className="relative">
             <img 
-              src="/Images/Farmer%20with%20tablet.jpeg"
+              src="/Images/Tablet.jpg"
               alt="Farmer with tablet in farm field"
               className="w-full h-[500px] object-cover rounded-lg shadow-xl bg-gray-200"
               loading="eager"

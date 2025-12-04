@@ -4,10 +4,10 @@ import { useInView } from '../ui/IntersectionObserver';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
-  { src: '/Images/Old%20heartland.jpeg', alt: 'Old Heartland' },
-  { src: '/Images/Old%20heartland2.jpeg', alt: 'Old Heartland 2' },
-  { src: '/Images/Old%20Heartland3.jpeg', alt: 'Old Heartland 3' },
-  { src: '/Images/New%20Heartland.jpg', alt: 'New Heartland' }
+  { src: '/Images/OldHeartland.png', alt: 'Old Heartland' },
+  { src: '/Images/OldHeartland2.png', alt: 'Old Heartland 2' },
+  { src: '/Images/OldHeartland3.png', alt: 'Old Heartland 3' },
+  { src: '/Images/NewHeartland2.jpg', alt: 'New Heartland' }
 ];
 
 export default function FamilySection() {

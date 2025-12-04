@@ -15,7 +15,7 @@ const products = [
     ],
     images: [
       '/Images/Potato Field.jpg',
-      '/Images/Farmer with tablet.jpeg',
+      '/Images/Tablet.jpg',
       '/Images/Heartland Workers.jpg'
     ],
     detailDescription: 'N/A'
@@ -95,7 +95,7 @@ const products = [
       'APIs for partners'
     ],
     images: [
-      '/Images/Farmer with tablet.jpeg',
+      '/Images/Tablet.jpg',
       '/Images/Monitor.jpg',
       '/Images/Heartland Workers.jpg'
     ],
