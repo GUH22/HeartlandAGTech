@@ -4,68 +4,148 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
+    src: "/Images/Farm1.png",
     title: "Farm Landscape",
     category: "Farm"
   },
   {
-    src: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80",
-    title: "Planting Season",
+    src: "/Images/Operation1.jpg",
+    title: "Operation",
     category: "Operations"
   },
   {
-    src: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
+    src: "/Images/Operation2.jpg",
+    title: "Operation",
+    category: "Operations"
+  },
+  {
+    src: "/Images/Operation3.jpg",
+    title: "Operation",
+    category: "Operations"
+  },
+  {
+    src: "/Images/Operation4.jpg",
+    title: "Operation",
+    category: "Operations"
+  },
+  {
+    src: "/Images/Farm2.png",
     title: "Growing Fields",
     category: "Farm"
   },
   {
-    src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
-    title: "Storage Facility",
+    src: "/Images/Facility1.jpg",
+    title: "Facility",
     category: "Facilities"
   },
   {
-    src: "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80",
-    title: "Team at Work",
+    src: "/Images/Facility2.jpg",
+    title: "Facility",
+    category: "Facilities"
+  },
+  {
+    src: "/Images/Facility3.jpg",
+    title: "Facility",
+    category: "Facilities"
+  },
+  {
+    src: "/Images/Facility4.jpg",
+    title: "Facility",
+    category: "Facilities"
+  },
+  {
+    src: "/Images/Facility5.jpg",
+    title: "Facility",
+    category: "Facilities"
+  },
+  {
+    src: "/Images/Facility6.jpg",
+    title: "Facility",
+    category: "Facilities"
+  },
+  {
+    src: "/Images/Team1.png",
+    title: "Team",
     category: "Team"
   },
   {
-    src: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
+    src: "/Images/Team2.png",
+    title: "Team",
+    category: "Team"
+  },
+  {
+    src: "/Images/Team3.png",
+    title: "Team",
+    category: "Team"
+  },
+  {
+    src: "/Images/Team4.png",
+    title: "Team",
+    category: "Team"
+  },
+  {
+    src: "/Images/Team5.png",
+    title: "Team",
+    category: "Team"
+  },
+  {
+    src: "/Images/Team6.png",
+    title: "Team",
+    category: "Team"
+  },
+  {
+    src: "/Images/Team7.png",
+    title: "Team",
+    category: "Team"
+  },
+  {
+    src: "/Images/Team8.png",
+    title: "Team",
+    category: "Team"
+  },
+  {
+    src: "/Images/Farm3.png",
     title: "Aerial View",
     category: "Farm"
   },
   {
-    src: "https://images.unsplash.com/photo-1500076656116-558758c991c1?w=800&q=80",
-    title: "Sunset Fields",
-    category: "Farm"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1597916829826-02e5bb4a54e0?w=800&q=80",
-    title: "Harvest Time",
-    category: "Operations"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80",
-    title: "Irrigation System",
-    category: "Technology"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
-    title: "Community Event",
-    category: "Community"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+    src: "/Images/Tech1.png",
     title: "Technology",
     category: "Technology"
   },
   {
-    src: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&q=80",
-    title: "Weather Station",
+    src: "/Images/Tech2.png",
+    title: "Technology",
+    category: "Technology"
+  },
+  {
+    src: "/Images/Tech3.png",
+    title: "Technology",
+    category: "Technology"
+  },
+  {
+    src: "/Images/Tech4.png",
+    title: "Technology",
+    category: "Technology"
+  },
+  {
+    src: "/Images/Tech5.png",
+    title: "Technology",
+    category: "Technology"
+  },
+  {
+    src: "/Images/Tech6.png",
+    title: "Technology",
+    category: "Technology"
+  },
+  {
+    src: "/Images/Tech7.png",
+    title: "Technology",
     category: "Technology"
   }
 ];
 
-const categories = ["All", "Farm", "Operations", "Facilities", "Team", "Technology", "Community"];
+const categories = ["All", "Farm", "Operations", "Facilities", "Team", "Technology"];
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("All");

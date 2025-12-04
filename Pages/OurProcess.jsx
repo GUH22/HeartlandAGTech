@@ -160,6 +160,7 @@ export default function OurProcess() {
                         ][index] || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80'}
                         alt={step.title}
                         className="w-full h-full object-cover"
+                        style={index === 1 ? { objectPosition: 'center 20%' } : {}}
                         onError={(e) => {
                           e.target.src = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80';
                         }}

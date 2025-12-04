@@ -14,9 +14,7 @@ const products = [
       'Tools for processors and growers to quantify potato quality automatically'
     ],
     images: [
-      '/Images/Potato Field.jpg',
-      '/Images/Tablet.jpg',
-      '/Images/Heartland Workers.jpg'
+      '/Images/MachineVision.png'
     ],
     detailDescription: 'N/A'
   },
@@ -30,9 +28,7 @@ const products = [
       'Based on U.S. patents covering predictive maintenance and fertigation integration'
     ],
     images: [
-      '/Images/Potato Field.jpg',
-      '/Images/Implement.jpg',
-      '/Images/Monitor.jpg'
+      '/Images/Irrigation.png'
     ],
     detailDescription: 'N/A'
   },
@@ -45,9 +41,9 @@ const products = [
       'Field-ready interface for automation across multiple equipment types'
     ],
     images: [
-      '/Images/Implement.jpg',
-      '/Images/Monitor.jpg',
-      '/Images/Potato Field.jpg'
+      '/Images/Fertigation1.jpg',
+      '/Images/Fertigation2.jpg',
+      '/Images/Fertigation3.jpg'
     ],
     detailDescription: 'N/A'
   },
@@ -61,9 +57,8 @@ const products = [
       'Alerts for hotspots, respiration spikes, and quality risk events'
     ],
     images: [
-      '/Images/Monitor.jpg',
-      '/Images/Potato Field.jpg',
-      '/Images/Farmer with tablet.jpeg'
+      '/Images/Storage1.jpg',
+      '/Images/Storage2.png'
     ],
     detailDescription: 'N/A'
   },
@@ -77,9 +72,8 @@ const products = [
       'Integrates with irrigation and disease management decisions'
     ],
     images: [
-      '/Images/Potato Field.jpg',
-      '/Images/Potato Flowers.jpg',
-      '/Images/Heartland Workers.jpg'
+      '/Images/Weather1.jpg',
+      '/Images/Weather2.png'
     ],
     detailDescription: 'N/A'
   },
@@ -95,9 +89,7 @@ const products = [
       'APIs for partners'
     ],
     images: [
-      '/Images/Tablet.jpg',
-      '/Images/Monitor.jpg',
-      '/Images/Heartland Workers.jpg'
+      '/Images/Platform.png'
     ],
     detailDescription: 'N/A'
   }
@@ -284,11 +276,11 @@ export default function Products() {
                 <div className="flex-1 overflow-y-auto p-6">
                   {/* Slideshow */}
                   <div className="relative mb-6">
-                    <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden bg-gray-100">
+                    <div className="relative min-h-[400px] md:min-h-[500px] rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
                       <img
                         src={selectedProduct.images[currentImageIndex]}
                         alt={`${selectedProduct.title} - Image ${currentImageIndex + 1}`}
-                        className="w-full h-full object-cover"
+                        className="max-w-full max-h-[500px] md:max-h-[600px] object-contain"
                         onError={(e) => {
                           e.target.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80';
                         }}
