@@ -25,6 +25,20 @@ export default function Layout({ children, currentPageName }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Determine active page from current location pathname
+  const getPageNameFromPath = (pathname) => {
+    if (pathname === '/') return 'Home'
+    if (pathname === '/about') return 'About'
+    if (pathname === '/our-process') return 'OurProcess'
+    if (pathname === '/products') return 'Products'
+    if (pathname === '/gallery') return 'Gallery'
+    if (pathname === '/employment') return 'Employment'
+    if (pathname === '/contact') return 'Contact'
+    return 'Home'
+  }
+
+  const activePageName = getPageNameFromPath(location.pathname);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -64,13 +78,13 @@ export default function Layout({ children, currentPageName }) {
                   className={`relative text-sm font-medium tracking-wide transition-colors ${
                     link.page === 'Contact' 
                       ? 'text-white font-semibold bg-[#7CB342] px-4 py-2 rounded' 
-                      : currentPageName === link.page 
+                      : activePageName === link.page 
                         ? 'text-[#7CB342]' 
                         : 'text-white/80 hover:text-white'
                   }`}
                 >
                   {link.name}
-                  {currentPageName === link.page && link.page !== 'Contact' && (
+                  {activePageName === link.page && link.page !== 'Contact' && (
                     <motion.div
                       layoutId="activeNav"
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#7CB342]"
@@ -107,7 +121,7 @@ export default function Layout({ children, currentPageName }) {
                     className={`block text-lg font-medium ${
                       link.page === 'Contact'
                         ? 'text-white font-semibold bg-[#7CB342] px-4 py-2 rounded text-center'
-                        : currentPageName === link.page 
+                        : activePageName === link.page 
                           ? 'text-[#7CB342]' 
                           : 'text-gray-700'
                     }`}

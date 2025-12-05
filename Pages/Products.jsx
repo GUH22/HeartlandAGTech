@@ -326,16 +326,6 @@ export default function Products() {
                     </div>
                   </div>
 
-                  {/* Description */}
-                  <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                      Description
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {selectedProduct.detailDescription}
-                    </p>
-                  </div>
-
                   {/* Features */}
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-3">
