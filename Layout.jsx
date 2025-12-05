@@ -24,6 +24,7 @@ export default function Layout({ children, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hasNavigated, setHasNavigated] = useState(false);
+  const [isInitialMount, setIsInitialMount] = useState(true);
   const [activePageName, setActivePageName] = useState(() => {
     // Initialize from window.location.pathname on mount to ensure correct value on reload
     const pathname = window.location.pathname;
@@ -52,6 +53,11 @@ export default function Layout({ children, currentPageName }) {
 
   // Track initial pathname to detect navigation vs reload
   const initialPathname = useRef(window.location.pathname);
+
+  // Mark initial mount as complete after first render
+  useEffect(() => {
+    setIsInitialMount(false);
+  }, []);
 
   // Update active page whenever location changes
   useEffect(() => {
@@ -83,7 +89,7 @@ export default function Layout({ children, currentPageName }) {
     <div className="min-h-screen bg-white text-gray-900">
       {/* Navigation */}
       <motion.header
-        initial={{ y: -100 }}
+        initial={isInitialMount ? false : { y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black shadow-md`}
