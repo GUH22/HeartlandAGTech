@@ -23,7 +23,7 @@ export default function Contact() {
   useEffect(() => {
     setHeroImageLoaded(false);
     const img = new Image();
-    const imageUrl = "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80";
+    const imageUrl = "/Images/ContactPage.jpeg";
     
     img.src = imageUrl;
     
@@ -40,6 +40,15 @@ export default function Contact() {
       setHeroImageSrc(imageUrl);
       setHeroImageLoaded(true);
     };
+    
+    if (!document.querySelector(`link[href="${imageUrl}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imageUrl;
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    }
   }, [location.pathname]);
 
   const handleSubmit = (e) => {
