@@ -12,10 +12,16 @@ export default function Contact() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [heroImageLoaded, setHeroImageLoaded] = useState(false);
   const [heroImageSrc, setHeroImageSrc] = useState(null);
   const heroContainerRef = useRef(null);
   const location = useLocation();
+
+  // API Gateway endpoint URL - Replace with your actual API Gateway URL after setup
+  // In Vite, use import.meta.env instead of process.env
+  const API_ENDPOINT = import.meta.env.VITE_CONTACT_API_URL || '';
 
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -51,11 +57,49 @@ export default function Contact() {
     }
   }, [location.pathname]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, this would send the form data to a server
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    // If no API endpoint is configured, show success message (for development)
+    if (!API_ENDPOINT) {
+      console.warn('API endpoint not configured. Form submission simulated.');
+      setSubmitted(true);
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      }, 5000);
+      return;
+    }
+
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      } else {
+        setSubmitError(data.error || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -124,6 +168,13 @@ export default function Contact() {
                   <p>We'll get back to you as soon as possible.</p>
                 </div>
               ) : (
+                <>
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg mb-6">
+                      <p className="font-semibold">Error</p>
+                      <p>{submitError}</p>
+                    </div>
+                  )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -182,11 +233,13 @@ export default function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-[#7CB342] text-white hover:bg-[#689F38] px-8 py-4 text-lg font-semibold transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#7CB342] text-white hover:bg-[#689F38] disabled:bg-gray-400 disabled:cursor-not-allowed px-8 py-4 text-lg font-semibold transition-colors"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
+                </>
               )}
             </motion.div>
 
