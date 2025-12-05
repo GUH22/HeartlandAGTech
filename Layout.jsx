@@ -23,21 +23,10 @@ export default function Layout({ children, currentPageName }) {
   
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activePageName, setActivePageName] = useState(() => {
-    // Initialize from window.location to ensure it's correct on page load/reload
-    const pathname = window.location.pathname;
-    if (pathname === '/') return 'Home'
-    if (pathname === '/about') return 'About'
-    if (pathname === '/our-process') return 'OurProcess'
-    if (pathname === '/products') return 'Products'
-    if (pathname === '/gallery') return 'Gallery'
-    if (pathname === '/employment') return 'Employment'
-    if (pathname === '/contact') return 'Contact'
-    return 'Home'
-  });
   const location = useLocation();
 
-  // Determine active page from current location pathname
+  // Determine active page directly from current location pathname on every render
+  // This ensures it's always in sync with the URL, even on reload
   const getPageNameFromPath = (pathname) => {
     if (pathname === '/') return 'Home'
     if (pathname === '/about') return 'About'
@@ -49,12 +38,8 @@ export default function Layout({ children, currentPageName }) {
     return 'Home'
   }
 
-  // Update active page whenever location changes (including on reload)
-  useEffect(() => {
-    const pageName = getPageNameFromPath(location.pathname);
-    console.log('Layout.jsx: Location changed, pathname:', location.pathname, 'pageName:', pageName);
-    setActivePageName(pageName);
-  }, [location.pathname]);
+  // Calculate active page directly from location - no state needed
+  const activePageName = getPageNameFromPath(location.pathname);
   
   console.log('Layout.jsx: Current pathname:', location.pathname, 'Active page:', activePageName);
 
