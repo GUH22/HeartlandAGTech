@@ -23,10 +23,21 @@ export default function Layout({ children, currentPageName }) {
   
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activePageName, setActivePageName] = useState(() => {
+    // Initialize from window.location.pathname on mount to ensure correct value on reload
+    const pathname = window.location.pathname;
+    if (pathname === '/') return 'Home'
+    if (pathname === '/about') return 'About'
+    if (pathname === '/our-process') return 'OurProcess'
+    if (pathname === '/products') return 'Products'
+    if (pathname === '/gallery') return 'Gallery'
+    if (pathname === '/employment') return 'Employment'
+    if (pathname === '/contact') return 'Contact'
+    return 'Home'
+  });
   const location = useLocation();
 
-  // Determine active page directly from current location pathname on every render
-  // This ensures it's always in sync with the URL, even on reload
+  // Determine active page from pathname
   const getPageNameFromPath = (pathname) => {
     if (pathname === '/') return 'Home'
     if (pathname === '/about') return 'About'
@@ -38,8 +49,11 @@ export default function Layout({ children, currentPageName }) {
     return 'Home'
   }
 
-  // Calculate active page directly from location - no state needed
-  const activePageName = getPageNameFromPath(location.pathname);
+  // Update active page whenever location changes
+  useEffect(() => {
+    const pageName = getPageNameFromPath(location.pathname);
+    setActivePageName(pageName);
+  }, [location.pathname]);
   
   console.log('Layout.jsx: Current pathname:', location.pathname, 'Active page:', activePageName);
 
@@ -90,7 +104,9 @@ export default function Layout({ children, currentPageName }) {
                   {link.name}
                   {activePageName === link.page && link.page !== 'Contact' && (
                     <motion.div
+                      key={`activeNav-${activePageName}`}
                       layoutId="activeNav"
+                      initial={false}
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#7CB342]"
                     />
                   )}
