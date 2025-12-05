@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '../Components/ui/IntersectionObserver';
+import { useLocation } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 
 export default function Contact() {
@@ -11,8 +12,35 @@ export default function Contact() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+  const [heroImageSrc, setHeroImageSrc] = useState(null);
+  const heroContainerRef = useRef(null);
+  const location = useLocation();
 
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  // Preload hero image and reset on route change
+  useEffect(() => {
+    setHeroImageLoaded(false);
+    const img = new Image();
+    const imageUrl = "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80";
+    
+    img.src = imageUrl;
+    
+    img.onload = () => {
+      setHeroImageSrc(imageUrl);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setHeroImageLoaded(true);
+        });
+      });
+    };
+    
+    img.onerror = () => {
+      setHeroImageSrc(imageUrl);
+      setHeroImageLoaded(true);
+    };
+  }, [location.pathname]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,21 +59,31 @@ export default function Contact() {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80"
-            alt="Contact"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[#7CB342]/70" />
-        </div>
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image Container */}
+        <div 
+          ref={heroContainerRef}
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundColor: '#5a7a2a',
+            backgroundImage: heroImageSrc ? `url(${heroImageSrc})` : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            transition: heroImageLoaded ? 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+            opacity: heroImageLoaded ? 1 : 0.5,
+            willChange: heroImageLoaded ? 'auto' : 'opacity',
+            backfaceVisibility: 'hidden',
+            transform: 'translateZ(0)'
+          }}
+        />
+        <div className="absolute inset-0 bg-[#7CB342]/70 z-[1]" />
         
-        <div className="relative text-center px-6 py-20">
+        <div className="relative z-10 text-center px-6 py-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: heroImageLoaded ? 1 : 0 }}
+            transition={{ duration: 0.8, delay: heroImageLoaded ? 0.2 : 0 }}
           >
             <span className="text-white/80 text-sm tracking-widest uppercase mb-4 block">
               Get in Touch

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '../Components/ui/IntersectionObserver';
+import { useLocation } from 'react-router-dom';
 import { Eye, Droplets, Settings, Database, CloudRain, LayoutDashboard, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const products = [
@@ -99,6 +100,42 @@ export default function Products() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+  const [heroImageSrc, setHeroImageSrc] = useState(null);
+  const heroContainerRef = useRef(null);
+  const location = useLocation();
+
+  // Preload hero image and reset on route change
+  useEffect(() => {
+    setHeroImageLoaded(false);
+    const img = new Image();
+    const imageUrl = "/Images/Product.jpg";
+    
+    img.src = imageUrl;
+    
+    img.onload = () => {
+      setHeroImageSrc(imageUrl);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setHeroImageLoaded(true);
+        });
+      });
+    };
+    
+    img.onerror = () => {
+      setHeroImageSrc(imageUrl);
+      setHeroImageLoaded(true);
+    };
+    
+    if (!document.querySelector(`link[href="${imageUrl}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imageUrl;
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    }
+  }, [location.pathname]);
 
   const openModal = (product) => {
     setSelectedProduct(product);
@@ -151,21 +188,31 @@ export default function Products() {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center">
-        <div className="absolute inset-0">
-          <img 
-            src="/Images/Product.jpg"
-            alt="Products"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[#7CB342]/70" />
-        </div>
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image Container */}
+        <div 
+          ref={heroContainerRef}
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundColor: '#5a7a2a',
+            backgroundImage: heroImageSrc ? `url(${heroImageSrc})` : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            transition: heroImageLoaded ? 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+            opacity: heroImageLoaded ? 1 : 0.5,
+            willChange: heroImageLoaded ? 'auto' : 'opacity',
+            backfaceVisibility: 'hidden',
+            transform: 'translateZ(0)'
+          }}
+        />
+        <div className="absolute inset-0 bg-[#7CB342]/70 z-[1]" />
         
-        <div className="relative text-center px-6 py-20">
+        <div className="relative z-10 text-center px-6 py-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: heroImageLoaded ? 1 : 0 }}
+            transition={{ duration: 0.8, delay: heroImageLoaded ? 0.2 : 0 }}
           >
             <span className="text-white/80 text-sm tracking-widest uppercase mb-4 block">
               Our Solutions

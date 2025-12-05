@@ -9,17 +9,17 @@ const solutions = [
   {
     title: 'Machine Vision & Artificial Intelligence',
     description: 'Advanced AI-powered vision systems for real-time quality assessment and automated equipment control.',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80'
+    image: '/Images/Machine.jpg'
   },
   {
     title: 'Patented Irrigation Intelligence Platform',
     description: 'Comprehensive irrigation monitoring system with predictive maintenance capabilities.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'
+    image: '/Images/IrrigationHome.jpg'
   },
   {
     title: 'Weather & Environmental Monitoring',
     description: 'Farm-ready weather stations providing comprehensive environmental data for decision-making.',
-    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80'
+    image: '/Images/WeatherHome.jpg'
   }
 ];
 

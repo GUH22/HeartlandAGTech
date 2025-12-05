@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import HistoryTimeline from '../Components/about/HistoryTimeline';
 import FamilySection from '../Components/home/FamilySection';
 import WhoWeAreSection from '../Components/home/WhoWeAreSection';
@@ -9,8 +10,11 @@ export default function About() {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
   const containerRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
+    // Reset image loading state on route change
+    setImageLoaded(false);
     // Preload the image aggressively before rendering
     const img = new Image();
     const imageUrl = "/Images/Potato%20Flowers.jpg";
@@ -44,7 +48,7 @@ export default function About() {
       link.setAttribute('fetchpriority', 'high');
       document.head.appendChild(link);
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     <main className="pt-20">
@@ -71,9 +75,9 @@ export default function About() {
         
         <div className="relative z-10 text-center px-6 py-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: imageLoaded ? 1 : 0 }}
+            transition={{ duration: 0.8, delay: imageLoaded ? 0.2 : 0 }}
           >
             <span className="text-white/80 text-sm tracking-widest uppercase mb-4 block">
               Our Story
