@@ -152,7 +152,7 @@ export default function OurProcess() {
                   <div className={isEven ? '' : 'md:order-1'}>
                     <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl bg-gray-200">
                       <img 
-                        src={index === 1 ? '/Images/Implement.jpg' : index === 2 ? '/Images/Monitor.jpg' : [
+                        src={index === 0 ? '/Images/Assesment.png' : index === 1 ? '/Images/Implement.jpg' : index === 2 ? '/Images/Monitor.jpg' : index === 3 ? '/Images/Support.png' : [
                           'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
                           'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80',
                           'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
