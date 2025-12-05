@@ -39,6 +39,7 @@ export default function OurTeamSection() {
   const [imagesLoaded, setImagesLoaded] = useState({});
   const [nextImagePreloaded, setNextImagePreloaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [direction, setDirection] = useState(1);
   const directionRef = useRef(1);
   const autoRotateIntervalRef = useRef(null);
 
@@ -107,7 +108,9 @@ export default function OurTeamSection() {
   };
 
   const goToPrevious = () => {
-    directionRef.current = -1;
+    const newDirection = -1;
+    directionRef.current = newDirection;
+    setDirection(newDirection);
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex === 0 ? teamMembers.length - 1 : prevIndex - 1;
       return newIndex;
@@ -116,7 +119,9 @@ export default function OurTeamSection() {
   };
 
   const goToNext = () => {
-    directionRef.current = 1;
+    const newDirection = 1;
+    directionRef.current = newDirection;
+    setDirection(newDirection);
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex === teamMembers.length - 1 ? 0 : prevIndex + 1;
       return newIndex;
@@ -126,15 +131,15 @@ export default function OurTeamSection() {
 
   const goToMember = (index) => {
     setCurrentIndex((prevIndex) => {
-      directionRef.current = index > prevIndex ? 1 : -1;
+      const newDirection = index > prevIndex ? 1 : -1;
+      directionRef.current = newDirection;
+      setDirection(newDirection);
       return index;
     });
     resetAutoRotate();
   };
 
   const currentMember = teamMembers[currentIndex];
-  const isEven = currentIndex % 2 === 0;
-  const imageOnRight = isEven; // First person (index 0) has image on right, second (index 1) on left, third (index 2) on right
 
   return (
     <section ref={ref} className="py-24 bg-white">
@@ -158,20 +163,32 @@ export default function OurTeamSection() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className={`grid md:grid-cols-2 gap-12 items-center ${
-            !imageOnRight ? 'md:grid-flow-dense' : ''
-          }`}>
-            {/* Content */}
-            <div className={imageOnRight ? '' : 'md:col-start-2'}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`${currentIndex}-content-${directionRef.current}`}
-                  initial={{ opacity: 0, x: directionRef.current > 0 ? 50 : -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: directionRef.current > 0 ? -50 : 50 }}
-                  transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-                  className="bg-gray-50 p-8 rounded-lg shadow-lg"
-                >
+          {/* Slideshow Container */}
+          <div className="relative overflow-hidden">
+            <AnimatePresence mode="wait" custom={directionRef.current}>
+              <motion.div
+                key={`${currentIndex}-${directionRef.current}`}
+                custom={directionRef.current}
+                initial={(dir) => ({
+                  opacity: 0,
+                  x: dir > 0 ? '100%' : '-100%'
+                })}
+                animate={{
+                  opacity: 1,
+                  x: 0
+                }}
+                exit={(dir) => ({
+                  opacity: 0,
+                  x: dir > 0 ? '-100%' : '100%'
+                })}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
+                className="grid md:grid-cols-2 gap-12 items-center"
+              >
+                {/* Content */}
+                <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
                   <h3 className="text-3xl md:text-4xl font-light text-gray-900 mb-2">
                     {currentMember.name}
                   </h3>
@@ -200,46 +217,24 @@ export default function OurTeamSection() {
                       <p>{currentMember.specialty}</p>
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                </div>
 
-            {/* Image */}
-            <div className={imageOnRight ? '' : 'md:col-start-1 md:row-start-1'}>
-              <div className="relative w-full h-[500px] rounded-lg shadow-xl overflow-hidden bg-gray-200">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={`${currentIndex}-image-${directionRef.current}`}
+                {/* Image */}
+                <div className="relative w-full h-[500px] rounded-lg shadow-xl overflow-hidden bg-gray-200">
+                  <img
                     src={currentMember.image}
                     alt={currentMember.name}
-                    initial={{ opacity: 0, x: directionRef.current > 0 ? 100 : -100, scale: 1.05 }}
-                    animate={{ 
-                      opacity: imagesLoaded[currentMember.image] ? 1 : 0.8, 
-                      x: 0,
-                      scale: 1
-                    }}
-                    exit={{ 
-                      opacity: 0, 
-                      x: directionRef.current > 0 ? -100 : 100,
-                      scale: 0.95
-                    }}
-                    transition={{ 
-                      duration: 0.8, 
-                      ease: [0.4, 0, 0.2, 1],
-                      opacity: { duration: 0.6 }
-                    }}
                     className="w-full h-full object-cover"
                     style={{
                       imageRendering: 'auto',
                       backfaceVisibility: 'hidden',
-                      transform: 'translateZ(0)',
-                      willChange: 'transform, opacity'
+                      transform: 'translateZ(0)'
                     }}
                     loading="eager"
                   />
-                </AnimatePresence>
-              </div>
-            </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Navigation Arrows */}
