@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from './src/utils.js';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -23,6 +23,7 @@ export default function Layout({ children, currentPageName }) {
   
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hasNavigated, setHasNavigated] = useState(false);
   const [activePageName, setActivePageName] = useState(() => {
     // Initialize from window.location.pathname on mount to ensure correct value on reload
     const pathname = window.location.pathname;
@@ -49,9 +50,16 @@ export default function Layout({ children, currentPageName }) {
     return 'Home'
   }
 
+  // Track initial pathname to detect navigation vs reload
+  const initialPathname = useRef(window.location.pathname);
+
   // Update active page whenever location changes
   useEffect(() => {
     const pageName = getPageNameFromPath(location.pathname);
+    // If pathname changed from initial, we've navigated (not just a reload)
+    if (location.pathname !== initialPathname.current) {
+      setHasNavigated(true);
+    }
     setActivePageName(pageName);
   }, [location.pathname]);
   
@@ -105,7 +113,7 @@ export default function Layout({ children, currentPageName }) {
                   {activePageName === link.page && link.page !== 'Contact' && (
                     <motion.div
                       key={`activeNav-${activePageName}`}
-                      layoutId="activeNav"
+                      layoutId={hasNavigated ? "activeNav" : undefined}
                       initial={false}
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#7CB342]"
                     />
